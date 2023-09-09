@@ -1,6 +1,7 @@
 package fct.kln.studntattend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/attendancesys")
-public class AttendaceSystem {
+public class AttendaceSystemController {
 
 	@Autowired
 	private AttendanceService attendanceSrevice;
@@ -124,8 +125,18 @@ public class AttendaceSystem {
 
 			ResponseEntity<?> responseEntity = null;
 
-			ResponseBean responseBean = attendanceSrevice.getTeacherAttendance(body);
+			ResponseBean responseBean = null;
+			try {
+			
+			responseBean=attendanceSrevice.getTeacherAttendance(body);
+			
+			responseEntity=new ResponseEntity<>(responseBean,HttpStatus.OK);
 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 			return responseEntity;
 
 		}
