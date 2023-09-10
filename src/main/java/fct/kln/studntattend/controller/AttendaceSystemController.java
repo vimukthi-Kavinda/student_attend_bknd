@@ -1,5 +1,7 @@
 package fct.kln.studntattend.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,17 +23,63 @@ public class AttendaceSystemController {
 
 	@Autowired
 	private AttendanceService attendanceSrevice;
+	
+	Logger logger = LoggerFactory.getLogger(AttendaceSystemController.class);
 
-	@PostMapping("/markattendance")
-	public ResponseEntity<?> markAttendance(
+	@PostMapping("/studentattend")
+	public ResponseEntity<?> markAttendanceStudent(
 			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
 			@RequestBody Object body) {
 		ResponseEntity<?> responseEntity = null;
 
-		ResponseBean responseBean = attendanceSrevice.markAttendance(body);
+		logger.info("Student Attendance marking starting");
+		ResponseBean responseBean = attendanceSrevice.markAttendanceStudent(body);
 
+		logger.info("Student Attendance marking returning");
 		return responseEntity;
 	}
+	
+	@PostMapping("/teacherattend")
+	public ResponseEntity<?> markAttendanceTeacher(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("Teacher Attendance marking starting");
+		ResponseBean responseBean = attendanceSrevice.markAttendanceTeacher(body);
+
+		logger.info("Teacher Attendance marking returning");
+		return responseEntity;
+	}
+	
+	
+	@PostMapping("/addstudent")
+	public ResponseEntity<?> addChild(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("Add student starting");
+		ResponseBean responseBean = attendanceSrevice.addChild(body);
+
+		logger.info("Add student returning");
+		return responseEntity;
+	}
+	
+	@PostMapping("/addteacher")
+	public ResponseEntity<?> addTeacher(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("add Teacher starting");
+		ResponseBean responseBean = attendanceSrevice.addTeacher(body);
+
+		logger.info("add Teacher returning");
+		return responseEntity;
+	}
+	
+	
 
 	// gets total attendance of a month by strudent
 	@GetMapping("/getattendmonth")
@@ -40,11 +88,11 @@ public class AttendaceSystemController {
 			@RequestBody(required = false) Object body, @RequestParam(defaultValue = "false") boolean search
 
 	) {
-
+		logger.info("get attend month starting");
 		ResponseEntity<?> responseEntity = null;
 
 		ResponseBean responseBean = attendanceSrevice.getMonthlyAttendance(body);
-
+		logger.info("get attend month returning");
 		return responseEntity;
 
 	}
@@ -56,11 +104,11 @@ public class AttendaceSystemController {
 			@RequestBody(required = false) Object body, @RequestParam(defaultValue = "false") boolean search
 
 	) {
-
+		logger.info("get attendance starting");
 		ResponseEntity<?> responseEntity = null;
 
 		ResponseBean responseBean = attendanceSrevice.getAttendance(body);
-
+		logger.info("get attendance returning");
 		return responseEntity;
 
 	}
@@ -71,11 +119,11 @@ public class AttendaceSystemController {
 			@RequestBody(required = false) Object body, @RequestParam(defaultValue = "false") boolean search
 
 	) {
-
+		logger.info("get student starting");
 		ResponseEntity<?> responseEntity = null;
 
 		ResponseBean responseBean = attendanceSrevice.getStudents(body);
-
+		logger.info("get student returning");
 		return responseEntity;
 
 	}
@@ -88,10 +136,11 @@ public class AttendaceSystemController {
 
 	) {
 
+		logger.info("get teacher starting");
 		ResponseEntity<?> responseEntity = null;
 
 		ResponseBean responseBean = attendanceSrevice.getStudents(body);
-
+		logger.info("get teacher returning");
 		return responseEntity;
 
 	}
@@ -106,11 +155,11 @@ public class AttendaceSystemController {
 				@RequestBody(required = false) Object body, @RequestParam(defaultValue = "false") boolean search
 
 		) {
-
+			logger.info("get teacher attend month starting");
 			ResponseEntity<?> responseEntity = null;
 
 			ResponseBean responseBean = attendanceSrevice.getMonthlyAttendanceTeacher(body);
-
+			logger.info("get teacher attend month returning");
 			return responseEntity;
 
 		}
@@ -122,6 +171,7 @@ public class AttendaceSystemController {
 				@RequestBody(required = false) Object body, @RequestParam(defaultValue = "false") boolean search
 
 		) {
+			logger.info("get teacher attendance starting");
 
 			ResponseEntity<?> responseEntity = null;
 
@@ -136,6 +186,7 @@ public class AttendaceSystemController {
 				e.printStackTrace();
 			}
 			
+			logger.info("get teacher attendance returning");
 			
 			return responseEntity;
 
