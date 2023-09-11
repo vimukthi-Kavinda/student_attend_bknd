@@ -149,14 +149,12 @@ public class AttendanceSreviceImpl implements AttendanceService {
 
 	@Override
 	public ResponseBean addChild(Object body) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
 	public ResponseBean addTeacher(Object body) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
