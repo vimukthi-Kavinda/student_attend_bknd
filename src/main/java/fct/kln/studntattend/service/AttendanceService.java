@@ -21,5 +21,18 @@ public interface AttendanceService {
 	public ResponseBean addTeacher(Object body);
 
 	public ResponseBean markAttendanceTeacher(Object body);
+
+	public ResponseBean removeChild(String studentid);
+
+	public ResponseBean removeTeacher(String tid);
+
+	public ResponseBean assignClassTeacher(String tid, String classid);
+
+	public ResponseBean editChild(Object body);
+
+	public ResponseBean editTeacher(Object body);
+
+	public ResponseBean editParent(Object body);
+
 	
 }

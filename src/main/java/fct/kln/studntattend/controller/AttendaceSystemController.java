@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -34,6 +35,8 @@ public class AttendaceSystemController {
 
 		logger.info("Student Attendance marking starting");
 		ResponseBean responseBean = attendanceSrevice.markAttendanceStudent(body);
+		
+		responseEntity=new ResponseEntity<>(responseBean,HttpStatus.OK);
 
 		logger.info("Student Attendance marking returning");
 		return responseEntity;
@@ -78,6 +81,88 @@ public class AttendaceSystemController {
 		logger.info("add Teacher returning");
 		return responseEntity;
 	}
+	
+	@PostMapping("/removestudent/{studentid}")
+	public ResponseEntity<?> removeChild(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@PathVariable String studentid) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("remove student starting");
+		ResponseBean responseBean = attendanceSrevice.removeChild(studentid);
+
+		logger.info("remove student returning");
+		return responseEntity;
+	}
+	
+	@PostMapping("/removeteacher/{tid}")
+	public ResponseEntity<?> removeTeacher(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@PathVariable String tid) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("remove Teacher starting");
+		ResponseBean responseBean = attendanceSrevice.removeTeacher(tid);
+
+		logger.info("remove Teacher returning");
+		return responseEntity;
+	}
+	
+	
+	@PostMapping("/assignclassteacher/{tid}/{classid}")
+	public ResponseEntity<?> assignClassTeacher(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@PathVariable String tid,@PathVariable String classid) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("remove Teacher starting");
+		ResponseBean responseBean = attendanceSrevice.assignClassTeacher(tid,classid);
+
+		logger.info("remove Teacher returning");
+		return responseEntity;
+	}
+	
+	@PostMapping("/editstudent")
+	public ResponseEntity<?> editChild(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("edit student starting");
+		ResponseBean responseBean = attendanceSrevice.editChild(body);
+
+		logger.info("edit student returning");
+		return responseEntity;
+	}
+	
+	@PostMapping("/editteacher")
+	public ResponseEntity<?> editTeacher(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("edit Teacher starting");
+		ResponseBean responseBean = attendanceSrevice.editTeacher(body);
+
+		logger.info("edit Teacher returning");
+		return responseEntity;
+	}
+	
+	@PostMapping("/editParent")
+	public ResponseEntity<?> editParent(
+			@ApiParam(hidden = true, required = true) @RequestHeader(value = "ip", required = false) String ip,
+			@RequestBody Object body) {
+		ResponseEntity<?> responseEntity = null;
+
+		logger.info("edit Parent starting");
+		ResponseBean responseBean = attendanceSrevice.editParent(body);
+
+		logger.info("edit Parent returning");
+		return responseEntity;
+	}
+	
+	
+	
 	
 	
 

@@ -150,11 +150,48 @@ public class AttendanceSreviceImpl implements AttendanceService {
 	@Override
 	public ResponseBean addChild(Object body) {
 		
+		return null;
 	}
 
 	@Override
 	public ResponseBean addTeacher(Object body) {
-		
+		return null;
+	}
+
+	@Override
+	public ResponseBean removeChild(String studentid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseBean removeTeacher(String tid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseBean assignClassTeacher(String tid, String classid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseBean editChild(Object body) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseBean editTeacher(Object body) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseBean editParent(Object body) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
